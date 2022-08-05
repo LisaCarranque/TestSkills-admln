@@ -10,7 +10,7 @@ import candidate.configuration.Generated;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
- * this class is the main class for searchPatient microservice
+ * this class is the main class for candidate microservice
  */
 @Slf4j
 @EnableSwagger2

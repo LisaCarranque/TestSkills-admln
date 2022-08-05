@@ -32,8 +32,8 @@ public class CandidateController {
      * @return the list of all candidate
      */
     @GetMapping("/candidate/list")
-    public List<Candidate> home() {
-        log.info("searchCandidate controller : listing all candidates");
+    public List<Candidate> list() {
+        log.info("candidate controller : listing all candidates");
         List<Candidate> candidates = candidateService.findAll();
         return candidates;
     }
@@ -48,7 +48,7 @@ public class CandidateController {
         if (candidate.getUuid() == null) {
             candidate.setUuid(UUID.randomUUID());
         }
-        log.info("searchCandidate controller : adding new candidate with uuid: " + candidate.getUuid());
+        log.info("candidate controller : adding new candidate with uuid: " + candidate.getUuid());
         Candidate candidateAdded =  candidateService.addCandidateInformation(candidate);
         if (Objects.isNull(candidateAdded)) {
             return ResponseEntity.noContent().build();
@@ -68,7 +68,7 @@ public class CandidateController {
      */
     @GetMapping("/candidate/update/{id}")
     public Candidate updateCandidateInformation(@PathVariable String id) {
-        log.info("searchCandidate controller : finding candidate with id: " + id);
+        log.info("candidate controller : finding candidate with id: " + id);
         return candidateService.getCandidateById(Integer.valueOf(id));
     }
 
@@ -79,7 +79,7 @@ public class CandidateController {
      */
     @PostMapping("/candidate/update")
     public Candidate validateUpdate(@RequestBody @Valid Candidate candidate) {
-        log.info("searchCandidate controller : updating candidate with uuid: " + candidate.getUuid()
+        log.info("candidate controller : updating candidate with uuid: " + candidate.getUuid()
                 + "and id:" + candidate.getId());
         return candidateService.updateCandidateInformation(candidate);
     }
@@ -91,7 +91,7 @@ public class CandidateController {
      */
     @GetMapping("/candidate/get/{id}")
     public Candidate getCandidateById(@PathVariable String id) {
-        log.info("searchCandidate controller : getting candidate with id: " + id);
+        log.info("candidate controller : getting candidate with id: " + id);
         Candidate candidate = candidateService.getCandidateById(Integer.valueOf(id));
         if (candidate == null) throw new CandidateNotFoundException("No candidate found in database for id: " + id);
         return candidate;
@@ -103,7 +103,7 @@ public class CandidateController {
      */
     @GetMapping("/candidate/getAll")
     public List<Candidate> getAll() {
-        log.info("searchCandidate controller : finding all candidates");
+        log.info("candidate controller : finding all candidates");
         List<Candidate> candidates = candidateService.findAll();
         return candidates;
     }
@@ -115,7 +115,7 @@ public class CandidateController {
      */
     @GetMapping("/candidate/getByLastname/{email}")
     public List<Candidate> getCandidateByEmail(@PathVariable String email) {
-        log.info("searchCandidate controller : getting candidate with email: " + email);
+        log.info("candidate controller : getting candidate with email: " + email);
         List<Candidate> candidates = candidateService.getCandidateByEmail(email);
         if (candidates.isEmpty()) throw new CandidateNotFoundException("No candidate found in database for lastname: " + email);
         return candidates;
